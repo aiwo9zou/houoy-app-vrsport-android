@@ -115,6 +115,10 @@ public class DeviceSettingActivity extends AppCompatActivity implements EasyPerm
                 finish();
             }
         });
+        isConnectDeviceAndShowLabel();
+    }
+
+    private void isConnectDeviceAndShowLabel() {
         BluetoothModule bluetoothModule = BluetoothModule.getInstance();
         if (bluetoothModule.isBluetoothOpen()) {
             String deviceAddress = SharedPreferencesHelper.gettingString(AddressKey, null);
@@ -210,8 +214,12 @@ public class DeviceSettingActivity extends AppCompatActivity implements EasyPerm
                     public void onConnSuccess() {
                         SharedPreferencesHelper.settingString(AddressKey,device.address);
                         SharedPreferencesHelper.settingString(DeviceNameKey,device.name);
-                        deviceName.setText("已绑定："+device.name);
-                        deviceName.setVisibility(View.VISIBLE);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                isConnectDeviceAndShowLabel();
+                            }
+                        });
                         Toast.makeText(getApplication(), "设备绑定成功", Toast.LENGTH_LONG).show();
                         InnerVersionTask task = new InnerVersionTask(new OrderCallback() {
                             @Override
@@ -235,13 +243,23 @@ public class DeviceSettingActivity extends AppCompatActivity implements EasyPerm
                     @Override
                     public void onConnFailure(int errorCode) {
                         Toast.makeText(getApplication(), "设备连接失败", Toast.LENGTH_LONG).show();
-                        deviceName.setVisibility(View.INVISIBLE);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                deviceName.setVisibility(View.INVISIBLE);
+                            }
+                        });
                     }
 
                     @Override
                     public void onDisconnect() {
                         Toast.makeText(getApplication(), "断开连接", Toast.LENGTH_LONG).show();
-                        deviceName.setVisibility(View.INVISIBLE);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                deviceName.setVisibility(View.INVISIBLE);
+                            }
+                        });
                     }
                 });
                 bluetoothModule.setOpenReConnect(true);

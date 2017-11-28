@@ -85,6 +85,10 @@ public class SHConstants {
     public static String ShowAttentionModelKey = "show_attention_model_key";
     public static String PersonAttentionModelKey = "attention_model_key";
     public static String PersonFollow_List_OrderColumnName_Value = "person_name";
+    public static String PersonFollow_Has_Follow = "has_follow";
+    public static String PersonFollow_Has_Follow_1 = "1";
+    public static String PersonFollow_Has_Follow_0 = "0";
+
     //recordVRSport list parameter.
     public static String RecordVRSport_List_OrderColumnName_Value = "ts";
 

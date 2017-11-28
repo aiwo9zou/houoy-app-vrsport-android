@@ -112,6 +112,7 @@ public class FindAttentionActivity extends AppCompatActivity {
         map.put(SHConstants.CommonStart, String.valueOf(page));
         map.put(SHConstants.CommonLength, SHConstants.EssayLength);
         map.put(SHConstants.CommonOrderColumnName, SHConstants.EssayOrderColumnName);
+        map.put(SHConstants.PersonFollow_Has_Follow, SHConstants.PersonFollow_Has_Follow_1);
 
         AndroidNetworking.get(SHConstants.RecordShareRetrieveMobile)
                 .addQueryParameter(map)
