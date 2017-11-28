@@ -72,7 +72,9 @@ public class AttentionRefreshRecyclerAdapter extends RecyclerView.Adapter<Attent
     public void onBindViewHolder(ViewHolder holder, int position) {
         final FindAttentionListDataModel model = mLists.get(position);
 
-        holder.image.setImageResource(R.mipmap.healthicon);
+        holder.image.setDefaultImageResId(R.mipmap.healthicon);
+        holder.image.setErrorImageResId(R.mipmap.healthicon);
+        holder.image.setImageUrl(model.path_thumbnail);
         holder.title.setText(model.record_share_name);
         holder.content.setText(Html.fromHtml(model.record_share_desc));
         holder.time.setText(model.ts);

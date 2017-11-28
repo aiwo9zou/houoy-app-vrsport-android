@@ -47,6 +47,8 @@ public class FindAttentionListDataModel implements Serializable{
     public String record_share_img;
     @SerializedName("pk_person")
     public String pk_person;
+    @SerializedName("path_thumbnail")
+    public String path_thumbnail;
     @SerializedName("person_name")
     public String person_name;
     @SerializedName("pkvalue")
