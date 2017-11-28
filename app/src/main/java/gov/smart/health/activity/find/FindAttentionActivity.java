@@ -27,6 +27,7 @@ import gov.smart.health.activity.find.model.FindAttentionDataModel;
 import gov.smart.health.activity.find.model.FindAttentionListDataModel;
 import gov.smart.health.activity.find.model.FindEssayDataModel;
 import gov.smart.health.utils.SHConstants;
+import gov.smart.health.utils.SharedPreferencesHelper;
 
 public class FindAttentionActivity extends AppCompatActivity {
 
@@ -108,11 +109,13 @@ public class FindAttentionActivity extends AppCompatActivity {
             return;
         }
         isLoadingApi = true;
+        String pk = SharedPreferencesHelper.gettingString(SHConstants.LoginUserPkPerson,"");
         HashMap<String,Object> map = new HashMap<>();
         map.put(SHConstants.CommonStart, String.valueOf(page));
         map.put(SHConstants.CommonLength, SHConstants.EssayLength);
         map.put(SHConstants.CommonOrderColumnName, SHConstants.EssayOrderColumnName);
         map.put(SHConstants.PersonFollow_Has_Follow, SHConstants.PersonFollow_Has_Follow_1);
+        map.put(SHConstants.CommonUser_PK, pk);
 
         AndroidNetworking.get(SHConstants.RecordShareRetrieveMobile)
                 .addQueryParameter(map)
